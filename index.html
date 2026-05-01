@@ -932,6 +932,247 @@ body.cursor-text #cursor-ring {
   *, *::before, *::after { cursor: auto !important; }
 }
 
+/* ===== MODAL STYLES ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,7,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal.active { display: flex; }
+.modal-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 32px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalIn 0.3s cubic-bezier(.23,1,.32,1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.modal-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--dim);
+  font-size: 28px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.modal-close:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: var(--font);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--border-active);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(144,144,192,0.5);
+}
+.calc-summary {
+  background: rgba(100,112,255,0.05);
+  border: 1px solid rgba(100,112,255,0.15);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.calc-summary-title {
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.calc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: var(--dim);
+}
+.calc-summary-row:last-child {
+  margin-bottom: 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text);
+}
+.btn-submit {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 13px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(100,112,255,0.45);
+}
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===== CUSTOM ALERT STYLES ===== */
+.custom-alert {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,7,0.9);
+  backdrop-filter: blur(16px);
+  z-index: 20000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.custom-alert.active { display: flex; }
+.custom-alert-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px 32px 32px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: alertIn 0.35s cubic-bezier(.23,1,.32,1);
+  position: relative;
+  overflow: hidden;
+}
+.custom-alert-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100,112,255,0.4), transparent);
+}
+@keyframes alertIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.custom-alert-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+}
+.custom-alert-icon.success {
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #22c55e;
+  box-shadow: 0 0 30px rgba(34,197,94,0.2);
+}
+.custom-alert-icon.error {
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #ef4444;
+  box-shadow: 0 0 30px rgba(239,68,68,0.2);
+}
+.custom-alert-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.custom-alert-message {
+  font-size: 14px;
+  color: var(--dim);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+.btn-alert {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-alert:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(100,112,255,0.4);
+}
+.btn-alert:active {
+  transform: translateY(0);
+}
+
 /* ===== ENHANCED HOVER ANIMATIONS ===== */
 
 /* Nav links */
@@ -1195,7 +1436,7 @@ body.cursor-text #cursor-ring {
           <label class="option-item">
             <input type="checkbox" class="extra" value="300" data-days="3" onchange="calc()">
             <div class="indicator sq"></div>
-            <div class="option-info"><b>მრავალენოვნება</b><span>თითო დამატებითი ენა</span></div>
+            <div class="option-info"><b>დამატებითი ენა(ები)</b><span>თითო დამატებითი ენა</span></div>
             <div class="option-price">+300 ₾</div>
           </label>
           <label class="option-item">
@@ -1247,7 +1488,7 @@ body.cursor-text #cursor-ring {
             <span class="b-val" id="br-extras-val">—</span>
           </div>
         </div>
-        <button class="btn-start">დაწყება →</button>
+        <button class="btn-start" onclick="openModal()">დაწყება →</button>
         <p class="btn-note">უფასო კონსულტაცია · პასუხი 24 საათში</p>
       </div>
     </div>
@@ -1261,7 +1502,7 @@ body.cursor-text #cursor-ring {
       <div class="mf-price" id="totalPriceMobile">600 ₾</div>
       <div class="mf-days">ვადა: <strong id="totalDaysMobile">5</strong> დღე</div>
     </div>
-    <button class="mf-btn">დაწყება →</button>
+    <button class="mf-btn" onclick="openModal()">დაწყება →</button>
   </div>
 </div>
 
@@ -1383,10 +1624,53 @@ body.cursor-text #cursor-ring {
   </div>
 </section>
 
+<!-- Email Modal -->
+<div id="emailModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>პროექტის დეტალები</h3>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <form id="projectForm" onsubmit="sendEmail(event)">
+      <div class="form-group">
+        <label for="userName">სახელი *</label>
+        <input type="text" id="userName" name="userName" required placeholder="თქვენი სახელი">
+      </div>
+      <div class="form-group">
+        <label for="userEmail">ელ.ფოსტა *</label>
+        <input type="email" id="userEmail" name="userEmail" required placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label for="companyName">კომპანიის სახელი</label>
+        <input type="text" id="companyName" name="companyName" placeholder="კომპანიის სახელი (არასავალდებულო)">
+      </div>
+      <div class="form-group">
+        <label for="userGoals">მოგვიყევი შენი მიზნების შესახებ *</label>
+        <textarea id="userGoals" name="userGoals" rows="4" required placeholder="რა პროექტი გაქვს? რა მიზნები გაქვს?"></textarea>
+      </div>
+      <div class="calc-summary" id="calcSummary"></div>
+      <button type="submit" class="btn-submit">გაგზავნა →</button>
+    </form>
+  </div>
+</div>
+
 <footer>
   <div class="footer-logo">DEV<span>SK</span></div>
   <div class="footer-copy">© 2026 DEVSK. All rights reserved.</div>
 </footer>
+
+<!-- Custom Alert -->
+<div id="customAlert" class="custom-alert">
+  <div class="custom-alert-content">
+    <div class="custom-alert-icon" id="alertIcon">✓</div>
+    <h3 class="custom-alert-title" id="alertTitle">წარმატება</h3>
+    <p class="custom-alert-message" id="alertMessage">მოქმედება წარმატებით შესრულდა</p>
+    <button class="btn-alert" onclick="closeCustomAlert()">გასაგებია</button>
+  </div>
+</div>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <!-- GSAP for smooth scrolling -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
@@ -1509,6 +1793,217 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 
 document.querySelectorAll('.stats-grid').forEach(el => counterObserver.observe(el));
+
+// ===== EMAILJS CONFIGURATION =====
+// Replace these with your actual EmailJS credentials
+const EMAILJS_CONFIG = {
+  PUBLIC_KEY: '3U_L1RyqRF4cFPqgZ',      // EmailJS Public Key
+  SERVICE_ID: 'service_ec7pzi9',      // EmailJS Service ID
+  TEMPLATE_ID: 'template_21wjgy5'     // EmailJS Template ID
+};
+
+// Initialize EmailJS
+(function() {
+  if (typeof emailjs !== 'undefined') {
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+  }
+})();
+
+function openModal() {
+  const modal = document.getElementById('emailModal');
+  const summary = document.getElementById('calcSummary');
+  
+  // Get current calculator values
+  const projType = document.getElementById('projType');
+  const projTypeText = projType.options[projType.selectedIndex].text;
+  const pageCount = document.getElementById('pageCount').value;
+  const totalPrice = document.getElementById('totalPriceDesktop').textContent;
+  const totalDays = document.getElementById('totalDaysDesktop').textContent;
+  
+  // Get selected admin option
+  let adminText = 'არცერთი';
+  document.querySelectorAll('input[name="admin"]').forEach(radio => {
+    if (radio.checked) {
+      adminText = radio.closest('.option-item').querySelector('.option-info b').textContent;
+    }
+  });
+  
+  // Get selected extras
+  const extras = [];
+  document.querySelectorAll('.extra:checked').forEach(cb => {
+    extras.push(cb.closest('.option-item').querySelector('.option-info b').textContent);
+  });
+  
+  // Build summary HTML
+  summary.innerHTML = `
+    <div class="calc-summary-title">კალკულატორის შედეგები</div>
+    <div class="calc-summary-row"><span>პროექტის ტიპი:</span><span>${projTypeText}</span></div>
+    <div class="calc-summary-row"><span>გვერდების რაოდენობა:</span><span>${pageCount}</span></div>
+    <div class="calc-summary-row"><span>ადმინ პანელი:</span><span>${adminText}</span></div>
+    ${extras.length > 0 ? `<div class="calc-summary-row"><span>დამატებები:</span><span>${extras.join(', ')}</span></div>` : ''}
+    <div class="calc-summary-row"><span>სავარაუდო ღირებულება:</span><span>${totalPrice}</span></div>
+    <div class="calc-summary-row"><span>ვადა:</span><span>${totalDays} დღე</span></div>
+  `;
+  
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  const modal = document.getElementById('emailModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ===== CUSTOM ALERT FUNCTIONS =====
+function showAlert(title, message, type = 'success') {
+  const alertEl = document.getElementById('customAlert');
+  const iconEl = document.getElementById('alertIcon');
+  const titleEl = document.getElementById('alertTitle');
+  const messageEl = document.getElementById('alertMessage');
+  
+  // Set icon based on type
+  if (type === 'success') {
+    iconEl.textContent = '✓';
+    iconEl.className = 'custom-alert-icon success';
+  } else if (type === 'error') {
+    iconEl.textContent = '✕';
+    iconEl.className = 'custom-alert-icon error';
+  }
+  
+  titleEl.textContent = title;
+  messageEl.textContent = message;
+  
+  alertEl.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCustomAlert() {
+  const alertEl = document.getElementById('customAlert');
+  alertEl.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close alert on backdrop click
+document.addEventListener('click', function(e) {
+  const alertEl = document.getElementById('customAlert');
+  if (e.target === alertEl) {
+    closeCustomAlert();
+  }
+});
+
+// Close alert on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const alertEl = document.getElementById('customAlert');
+    if (alertEl.classList.contains('active')) {
+      closeCustomAlert();
+    }
+  }
+});
+
+function sendEmail(e) {
+  e.preventDefault();
+  
+  const submitBtn = e.target.querySelector('.btn-submit');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'იგზავნება...';
+  
+  // Get user inputs
+  const userName = document.getElementById('userName').value;
+  const userEmail = document.getElementById('userEmail').value;
+  const companyName = document.getElementById('companyName').value || 'მითითებული არ არის';
+  const userGoals = document.getElementById('userGoals').value;
+  
+  // Get calculator data
+  const projType = document.getElementById('projType');
+  const projTypeText = projType.options[projType.selectedIndex].text;
+  const projTypeValue = projType.value;
+  const pageCount = document.getElementById('pageCount').value;
+  const totalPrice = document.getElementById('totalPriceDesktop').textContent.replace(/[^0-9,]/g, '');
+  const totalDays = document.getElementById('totalDaysDesktop').textContent;
+  
+  // Get admin selection
+  let adminText = 'არცერთი';
+  let adminValue = 0;
+  document.querySelectorAll('input[name="admin"]').forEach(radio => {
+    if (radio.checked) {
+      adminText = radio.closest('.option-item').querySelector('.option-info b').textContent;
+      adminValue = radio.value;
+    }
+  });
+  
+  // Get extras
+  const extrasList = [];
+  let extrasTotal = 0;
+  document.querySelectorAll('.extra:checked').forEach(cb => {
+    extrasList.push(cb.closest('.option-item').querySelector('.option-info b').textContent);
+    extrasTotal += parseInt(cb.value);
+  });
+  
+  // Calculate breakdown
+  const basePrice = parseInt(projTypeValue);
+  const pageAdd = pageCount > 5 ? (pageCount - 5) * 50 : 0;
+  
+  // Prepare template parameters for EmailJS
+  const templateParams = {
+    // User info
+    user_name: userName,
+    user_email: userEmail,
+    company_name: companyName,
+    user_goals: userGoals,
+    
+    // Calculator data
+    project_type: projTypeText,
+    page_count: pageCount,
+    admin_panel: adminText,
+    extras: extrasList.length > 0 ? extrasList.join(', ') : 'არცერთი',
+    total_price: totalPrice + ' ₾',
+    total_days: totalDays + ' დღე',
+    
+    // Detailed breakdown
+    base_price: basePrice.toLocaleString() + ' ₾',
+    pages_price: pageAdd > 0 ? '+' + pageAdd + ' ₾' : '—',
+    admin_price: adminValue > 0 ? '+' + parseInt(adminValue).toLocaleString() + ' ₾' : '—',
+    extras_price: extrasTotal > 0 ? '+' + extrasTotal.toLocaleString() + ' ₾' : '—',
+    
+    // Meta
+    submission_date: new Date().toLocaleString('ka-GE'),
+    reply_to: userEmail  // User's email for reply functionality
+  };
+  
+  // Send email using EmailJS
+  emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
+    .then(function(response) {
+      showAlert('გმადლობთ!', 'თქვენი მოთხოვნა წარმატებით გაიგზავნა. ჩვენ დაგიკავშირდებით 24 საათში.', 'success');
+      closeModal();
+      document.getElementById('projectForm').reset();
+    }, function(error) {
+      console.error('EmailJS Full Error:', error);
+      console.error('Error text:', error.text);
+      console.error('Error status:', error.status);
+      showAlert('შეცდომა', 'სამწუხაროდ, წერილის გაგზავნა ვერ მოხერხდა. შეცდომა: ' + (error.text || 'უცნობი შეცდომა') + '. გთხოვთ, სცადოთ თავიდან.', 'error');
+    })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'გაგზავნა →';
+    });
+}
+
+// Close modal on backdrop click
+document.addEventListener('click', function(e) {
+  const modal = document.getElementById('emailModal');
+  if (e.target === modal) {
+    closeModal();
+  }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   calc();
