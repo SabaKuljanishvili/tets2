@@ -6,6 +6,9 @@
 <title>DEVSK</title>
  <link rel="icon" type="image/png" id="dynamicFavicon" href="https://i.postimg.cc/mr1Kx5FF/newlogo3-c.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
 <style>
 @font-face {
   font-family: 'Exbed';
@@ -27,6 +30,13 @@
   --dim: #9090C0;
   --glow: rgba(100,112,255,0.2);
   --font: 'SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
+}
+
+.jetbrains-mono {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -200,7 +210,7 @@ nav{
 }
 
 .hero-title{
-  font-size:clamp(44px,7.5vw,80px);
+  font-size:clamp(50px,7.5vw,80px);
   font-weight:800;line-height:1.40;
   letter-spacing:-0.03em;
   margin-bottom:24px;
@@ -2358,6 +2368,13 @@ function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.langCode === lang);
   });
+  
+  // Apply JetBrains Mono font for English
+  if (lang === 'en') {
+    document.body.classList.add('jetbrains-mono');
+  } else {
+    document.body.classList.remove('jetbrains-mono');
+  }
   
   // Update all elements with data-lang attribute
   document.querySelectorAll('[data-lang]').forEach(el => {
