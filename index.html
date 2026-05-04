@@ -111,7 +111,7 @@ nav{
   padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;
   cursor:pointer;display:flex;align-items:center;gap:8px;
   transition:all 0.25s;letter-spacing:0.02em;
-  position:relative;overflow:hidden;
+  position:relative;overflow:hidden;white-space:nowrap;
 }
 .nav-cta::before{
   content:'';position:absolute;inset:0;
@@ -166,6 +166,7 @@ nav{
 
 .hero-content{
   position:relative;z-index:10;max-width:900px;
+  padding-top:80px;
   animation:heroFadeUp 1s cubic-bezier(.23,1,.32,1) 0.2s both;
 }
 
@@ -1312,9 +1313,8 @@ body.cursor-text #cursor-ring {
       <li><a href="#about">About</a></li>
       <li><a href="#booking">Meeting</a></li>
     </ul>
-    <button class="nav-cta">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18C.01.68.44.01.94.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"></path></svg>
-      <span data-lang="nav_cta">Book a Call</span>
+    <button class="nav-cta" aria-label="Book a Call">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18C.01.68.44.01.94.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"></path></svg>
     </button>
     <div class="lang-switcher">
       <button class="lang-btn active" onclick="setLanguage('ka')" data-lang-code="ka">KA</button>
@@ -2374,7 +2374,7 @@ function setLanguage(lang) {
   updateCalcLabels(lang);
   
   // Update page title
-  document.title = lang === 'en' ? 'DEVSK — Web Development Studio' : 'DEVSK — ვებ დეველოპმენტის სტუდია';
+  document.title = 'DEVSK';
 }
 
 // Initialize language on load
