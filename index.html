@@ -121,6 +121,35 @@ nav{
 .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 25px rgba(100,112,255,0.4)}
 .nav-cta:hover::before{transform:translateX(100%)}
 
+/* Language Switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 4px;
+}
+.lang-btn {
+  background: none;
+  border: none;
+  color: var(--dim);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.lang-btn:hover {
+  color: var(--text);
+}
+.lang-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
 /* ===== HERO ===== */
 .hero{
   position:relative;height:100vh;
@@ -1285,8 +1314,12 @@ body.cursor-text #cursor-ring {
     </ul>
     <button class="nav-cta">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18C.01.68.44.01.94.01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L5.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"></path></svg>
-      Book a Call
+      <span data-lang="nav_cta">Book a Call</span>
     </button>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('ka')" data-lang-code="ka">KA</button>
+      <button class="lang-btn" onclick="setLanguage('en')" data-lang-code="en">EN</button>
+    </div>
   </div>
 </nav>
 
@@ -1299,13 +1332,13 @@ body.cursor-text #cursor-ring {
       Premium Digital Studio · DEVSK
     </div>
     <h1 class="hero-title">
-      <span class="line1">დახვეწილი ვებგვერდი</span>
-      <span class="line2">მეტი მომხმარებელი</span>
+      <span class="line1" data-lang="hero_line1">დახვეწილი ვებგვერდი</span>
+      <span class="line2" data-lang="hero_line2">მეტი მომხმარებელი</span>
     </h1>
-    <p class="hero-sub">ჩვენ ვქმნით თანამედროვე, სწრაფ და მომხმარებელზე მორგებულ ვებგვერდებს, რომლებიც რეალური შედეგებს იძლევიან.</p>
+    <p class="hero-sub" data-lang="hero_subtitle">ჩვენ ვქმნით თანამედროვე, სწრაფ და მომხმარებელზე მორგებულ ვებგვერდებს, რომლებიც რეალური შედეგებს იძლევიან.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#calculator">პროექტის დაწყება →</a>
-      <a class="btn-ghost" href="#work">ნამუშევრები ↓</a>
+      <a class="btn-primary" href="#calculator" data-lang="cta_primary">პროექტის დაწყება →</a>
+      <a class="btn-ghost" href="#work" data-lang="cta_secondary">ნამუშევრები ↓</a>
     </div>
   </div>
   <div class="hero-bg">
@@ -1320,29 +1353,29 @@ body.cursor-text #cursor-ring {
 <section id="services" class="services">
   <div class="services-header reveal">
     <div class="section-tag">Services</div>
-    <h2>ჩვენი სერვისები</h2>
-    <p>იდეიდან მზა პროდუქტამდე.</p>
+    <h2 data-lang="services_title">ჩვენი სერვისები</h2>
+    <p data-lang="services_subtitle">იდეიდან მზა პროდუქტამდე.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal" style="transition-delay:0.05s">
       <div class="service-icon">⚡</div>
-      <h3>ბიზნეს ავტომატიზაცია</h3>
-      <p>ჩვენი პლატფორმები გარდაქმნის თქვენს ყოველდღიურ რუტინულ საქმეებს ავტომატიზებულ პროცესებად, რაც საშუალებას გაძლევთ დაზოგოთ დრო და ფოკუსირდეთ მთავარ მიზნებზე.</p>
+      <h3 data-lang="service_1_title">ბიზნეს ავტომატიზაცია</h3>
+      <p data-lang="service_1_desc">ჩვენი პლატფორმები გარდაქმნის თქვენს ყოველდღიურ რუტინულ საქმეებს ავტომატიზებულ პროცესებად, რაც საშუალებას გაძლევთ დაზოგოთ დრო და ფოკუსირდეთ მთავარ მიზნებზე.</p>
     </div>
     <div class="service-card wide reveal" style="transition-delay:0.1s">
       <div class="service-icon">🌐</div>
-      <h3>მაღალი დონის ვებ-დეველოპმენტი</h3>
-      <p>გუნდი უზრუნველყოფს სრულ ციფრულ ციკლს: ჩვენ თქვენთან ერთად გავდივართ გზას პირველადი კონცეფციიდან, დიზაინიდან და დეველოპმენტიდან პროექტის წარმატებულ გაშვებამდე.</p>
+      <h3 data-lang="service_2_title">მაღალი დონის ვებ-დეველოპმენტი</h3>
+      <p data-lang="service_2_desc">გუნდი უზრუნველყოფს სრულ ციფრულ ციკლს: ჩვენ თქვენთან ერთად გავდივართ გზას პირველადი კონცეფციიდან, დიზაინიდან და დეველოპმენტიდან პროექტის წარმატებულ გაშვებამდე.</p>
     </div>
     <div class="service-card reveal" style="transition-delay:0.15s">
       <div class="service-icon">🔍</div>
-      <h3>SEO და ტექნიკური მხარდაჭერა</h3>
-      <p>ჩვენ უზრუნველყოფთ თქვენი საიტის მუდმივ ტექნიკურ გამართულობას და ვზრუნავთ მის მაღალ პოზიციებზე საძიებო სისტემებში.</p>
+      <h3 data-lang="service_3_title">SEO და ტექნიკური მხარდაჭერა</h3>
+      <p data-lang="service_3_desc">ჩვენ უზრუნველყოფთ თქვენი საიტის მუდმივ ტექნიკურ გამართულობას და ვზრუნავთ მის მაღალ პოზიციებზე საძიებო სისტემებში.</p>
     </div>
     <div class="service-card reveal" style="transition-delay:0.2s">
       <div class="service-icon">✦</div>
-      <h3>პრემიუმ UI/UX დიზაინი</h3>
-      <p>ვქმნით დახვეწილ ვიზუალურ ესთეტიკას, რომელიც არა მხოლოდ ლამაზია, არამედ სრულად არის მორგებული მომხმარებლის საჭიროებებსა და კომფორტზე.</p>
+      <h3 data-lang="service_4_title">პრემიუმ UI/UX დიზაინი</h3>
+      <p data-lang="service_4_desc">ვქმნით დახვეწილ ვიზუალურ ესთეტიკას, რომელიც არა მხოლოდ ლამაზია, არამედ სრულად არის მორგებული მომხმარებლის საჭიროებებსა და კომფორტზე.</p>
     </div>
     <div class="service-card logo-card reveal" style="transition-delay:0.25s">   
        <img src="https://i.postimg.cc/GhsLQqXT/newlogo3.png" alt="" srcset="">
@@ -1356,19 +1389,19 @@ body.cursor-text #cursor-ring {
   <div class="stats-grid">
     <div class="stat-item reveal">
       <div class="stat-num" data-target="15">0</div>
-      <div class="stat-label">დასრულებული პროექტი</div>
+      <div class="stat-label" data-lang="stat_projects">დასრულებული პროექტი</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.1s">
       <div class="stat-num" data-target="98">0</div>
-      <div class="stat-label">კმაყოფილი კლიენტი %</div>
+      <div class="stat-label" data-lang="stat_clients">კმაყოფილი კლიენტი %</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.2s">
       <div class="stat-num" data-suffix="d" data-target="14">0</div>
-      <div class="stat-label">საშ. ვადა დღეებში</div>
+      <div class="stat-label" data-lang="stat_days">საშ. ვადა დღეებში</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.3s">
       <div class="stat-num" data-target="5">0</div>
-      <div class="stat-label">წლის გამოცდილება</div>
+      <div class="stat-label" data-lang="stat_years">წლის გამოცდილება</div>
     </div>
   </div>
 </div>
@@ -1377,13 +1410,13 @@ body.cursor-text #cursor-ring {
 <div id="calculator" class="calc-section">
   <div class="calc-header reveal">
     <div class="section-tag">Calculator</div>
-    <h2>ღირებულების კალკულატორი</h2>
-    <p>აიღეთ სავარაუდო ფასი — სწრაფად და გამჭვირვალედ</p>
+    <h2 data-lang="calc_title">ღირებულების კალკულატორი</h2>
+    <p data-lang="calc_subtitle">აიღეთ სავარაუდო ფასი — სწრაფად და გამჭვირვალედ</p>
   </div>
   <div class="calc-grid">
     <div class="left-col">
       <div class="card reveal">
-        <div class="card-label">პროექტის ტიპი</div>
+        <div class="card-label" data-lang="calc_proj_type">პროექტის ტიპი</div>
         <div class="select-wrap">
           <select id="projType" onchange="calc()">
             <option value="600"  data-days="5">Landing Page</option>
@@ -1394,61 +1427,61 @@ body.cursor-text #cursor-ring {
         </div>
       </div>
       <div class="card reveal" style="transition-delay:0.05s">
-        <div class="card-label">გვერდების რაოდენობა</div>
+        <div class="card-label" data-lang="calc_pages">გვერდების რაოდენობა</div>
         <div class="slider-row">
           <div class="slider-big" id="pageCountDisplay">5</div>
-          <div class="slider-unit">გვერდი</div>
+          <div class="slider-unit" data-lang="calc_pages_unit">გვერდი</div>
         </div>
         <input type="range" id="pageCount" min="1" max="20" value="5" oninput="updateSlider(this);calc()">
       </div>
       <div class="card reveal" style="transition-delay:0.1s">
-        <div class="card-label">ადმინ პანელი (CMS)</div>
+        <div class="card-label" data-lang="calc_cms">ადმინ პანელი (CMS)</div>
         <div class="option-list">
           <label class="option-item active">
             <input type="radio" name="admin" value="0" data-days="0" checked onchange="calc()">
             <div class="indicator"></div>
-            <div class="option-info"><b>არცერთი</b><span>სტატიკური საიტი</span></div>
+            <div class="option-info"><b data-lang="calc_cms_none">არცერთი</b><span data-lang="calc_cms_none_desc">სტატიკური საიტი</span></div>
             <div class="option-price">—</div>
           </label>
           <label class="option-item">
             <input type="radio" name="admin" value="500" data-days="5" onchange="calc()">
             <div class="indicator"></div>
-            <div class="option-info"><b>საბაზისო CMS</b><span>ტექსტები, სურათები, მართვა</span></div>
+            <div class="option-info"><b data-lang="calc_cms_basic">საბაზისო CMS</b><span data-lang="calc_cms_basic_desc">ტექსტები, სურათები, მართვა</span></div>
             <div class="option-price">+500 ₾</div>
           </label>
           <label class="option-item">
             <input type="radio" name="admin" value="1200" data-days="12" onchange="calc()">
             <div class="indicator"></div>
-            <div class="option-info"><b>სრული კონტროლი</b><span>მომხმარებლები, ანალიტიკა, DB</span></div>
+            <div class="option-info"><b data-lang="calc_cms_full">სრული კონტროლი</b><span data-lang="calc_cms_full_desc">მომხმარებლები, ანალიტიკა, DB</span></div>
             <div class="option-price">+1,200 ₾</div>
           </label>
         </div>
       </div>
       <div class="card reveal" style="transition-delay:0.15s">
-        <div class="card-label">დამატებითი ფუნქციები</div>
+        <div class="card-label" data-lang="calc_extras">დამატებითი ფუნქციები</div>
         <div class="option-list">
           <label class="option-item">
             <input type="checkbox" class="extra" value="400" data-days="4" onchange="calc()">
             <div class="indicator sq"></div>
-            <div class="option-info"><b>გადახდის სისტემები</b><span>Stripe, ბანკები, ონლაინ ოპერაციები</span></div>
+            <div class="option-info"><b data-lang="calc_extra_payment">გადახდის სისტემები</b><span data-lang="calc_extra_payment_desc">Stripe, ბანკები, ონლაინ ოპერაციები</span></div>
             <div class="option-price">+400 ₾</div>
           </label>
           <label class="option-item">
             <input type="checkbox" class="extra" value="300" data-days="3" onchange="calc()">
             <div class="indicator sq"></div>
-            <div class="option-info"><b>დამატებითი ენა(ები)</b><span>თითო დამატებითი ენა</span></div>
+            <div class="option-info"><b data-lang="calc_extra_lang">დამატებითი ენა(ები)</b><span data-lang="calc_extra_lang_desc">თითო დამატებითი ენა</span></div>
             <div class="option-price">+300 ₾</div>
           </label>
           <label class="option-item">
             <input type="checkbox" class="extra" value="600" data-days="7" onchange="calc()">
             <div class="indicator sq"></div>
-            <div class="option-info"><b>ავტორიზაციის სისტემა</b><span>პირადი კაბინეტები</span></div>
+            <div class="option-info"><b data-lang="calc_extra_auth">ავტორიზაციის სისტემა</b><span data-lang="calc_extra_auth_desc">პირადი კაბინეტები</span></div>
             <div class="option-price">+600 ₾</div>
           </label>
         </div>
       </div>
       <div class="card reveal" style="transition-delay:0.2s">
-        <div class="card-label">ინფრასტრუქტურა & SEO</div>
+        <div class="card-label" data-lang="calc_infra">ინფრასტრუქტურა & SEO</div>
         <div class="option-list">
           <label class="option-item">
             <input type="checkbox" class="extra" value="350" data-days="3" onchange="calc()">
@@ -1467,29 +1500,29 @@ body.cursor-text #cursor-ring {
     </div>
     <div class="result-panel">
       <div class="result-card">
-        <div class="result-label">სავარაუდო ღირებულება</div>
+        <div class="result-label" data-lang="calc_result_label">სავარაუდო ღირებულება</div>
         <div class="result-price" id="totalPriceDesktop">600 <span class="result-currency">₾</span></div>
         <div class="result-days">ვადა: <strong id="totalDaysDesktop">5</strong> სამუშაო დღე</div>
         <div class="breakdown">
           <div class="breakdown-row active" id="br-base">
-            <span>საბაზო ღირებულება</span>
+            <span data-lang="calc_base_price">საბაზო ღირებულება</span>
             <span class="b-val" id="br-base-val">600 ₾</span>
           </div>
           <div class="breakdown-row" id="br-pages">
-            <span>დამატებითი გვერდები</span>
+            <span data-lang="calc_extra_pages">დამატებითი გვერდები</span>
             <span class="b-val" id="br-pages-val">—</span>
           </div>
           <div class="breakdown-row" id="br-admin">
-            <span>ადმინ პანელი</span>
+            <span data-lang="calc_admin">ადმინ პანელი</span>
             <span class="b-val" id="br-admin-val">—</span>
           </div>
           <div class="breakdown-row" id="br-extras">
-            <span>დამატებები</span>
+            <span data-lang="calc_extras_label">დამატებები</span>
             <span class="b-val" id="br-extras-val">—</span>
           </div>
         </div>
-        <button class="btn-start" onclick="openModal()">დაწყება →</button>
-        <p class="btn-note">უფასო კონსულტაცია · პასუხი 24 საათში</p>
+        <button class="btn-start" onclick="openModal()" data-lang="calc_start">დაწყება →</button>
+        <p class="btn-note" data-lang="calc_consult">უფასო კონსულტაცია · პასუხი 24 საათში</p>
       </div>
     </div>
   </div>
@@ -1500,9 +1533,9 @@ body.cursor-text #cursor-ring {
   <div class="mf-row">
     <div>
       <div class="mf-price" id="totalPriceMobile">600 ₾</div>
-      <div class="mf-days">ვადა: <strong id="totalDaysMobile">5</strong> დღე</div>
+      <div class="mf-days"><span data-lang="calc_result_days_short">ვადა:</span> <strong id="totalDaysMobile">5</strong> <span data-lang="calc_days_short">დღე</span></div>
     </div>
-    <button class="mf-btn" onclick="openModal()">დაწყება →</button>
+    <button class="mf-btn" onclick="openModal()" data-lang="calc_start">დაწყება →</button>
   </div>
 </div>
 
@@ -1510,8 +1543,8 @@ body.cursor-text #cursor-ring {
 <section id="work" class="work-section">
   <div class="work-header reveal">
     <div class="section-tag">Work</div>
-    <h2>ჩვენი ნამუშევრები</h2>
-    <p>პროექტები, რომლებითაც ვამაყობთ</p>
+    <h2 data-lang="work_title">ჩვენი ნამუშევრები</h2>
+    <p data-lang="work_subtitle">პროექტები, რომლებითაც ვამაყობთ</p>
   </div>
   <div class="work-grid">
     <a href="#" class="work-card reveal">
@@ -1520,7 +1553,7 @@ body.cursor-text #cursor-ring {
       </div>
       <div class="work-info">
         <div class="work-cat">E-Commerce</div>
-        <h3>ონლაინ მაღაზია</h3>
+        <h3 data-lang="work_1_title">ონლაინ მაღაზია</h3>
         <!-- <span class="work-link">ნახვა →</span> -->
       </div>
     </a>
@@ -1530,7 +1563,7 @@ body.cursor-text #cursor-ring {
       </div>
       <div class="work-info">
         <div class="work-cat">Corporate Platform</div>
-        <h3>კორპორატიული ვებგვერდი</h3>
+        <h3 data-lang="work_2_title">კორპორატიული ვებგვერდი</h3>
         <!-- <span class="work-link">ნახვა →</span> -->
       </div>
     </a>
@@ -1540,7 +1573,7 @@ body.cursor-text #cursor-ring {
       </div>
       <div class="work-info">
         <div class="work-cat">Web App / SaaS</div>
-        <h3>ბიზნესის მართვის სისტემა</h3>
+        <h3 data-lang="work_3_title">ბიზნესის მართვის სისტემა</h3>
         <!-- <span class="work-link">ნახვა →</span> -->
       </div>
     </a>
@@ -1550,7 +1583,7 @@ body.cursor-text #cursor-ring {
       </div>
       <div class="work-info">
         <div class="work-cat">Landing Page</div>
-        <h3>პრომო გვერდი</h3>
+        <h3 data-lang="work_4_title">პრომო გვერდი</h3>
         <!-- <span class="work-link">ნახვა →</span> -->
       </div>
     </a>
@@ -1562,29 +1595,29 @@ body.cursor-text #cursor-ring {
   <div class="about-container">
     <div class="about-info reveal">
       <div class="about-badge">DEVSK Studio</div>
-      <h2 class="about-heading">ჩვენ ვქმნით <span>მომავალს</span></h2>
-      <p class="about-text">ჩვენ ვართ ციფრული სააგენტო, რომელიც აერთიანებს პრემიუმ ესთეტიკას და ულტრათანამედროვე ვებ-ტექნოლოგიებს. ვეხმარებით ბიზნესებს ზრდაში.</p>
+      <h2 class="about-heading" data-lang="about_heading">ჩვენ ვქმნით <span>მომავალს</span></h2>
+      <p class="about-text" data-lang="about_text">ჩვენ ვართ ციფრული სააგენტო, რომელიც აერთიანებს პრემიუმ ესთეტიკას და ულტრათანამედროვე ვებ-ტექნოლოგიებს. ვეხმარებით ბიზნესებს ზრდაში.</p>
     </div>
     <div class="about-list reveal" style="transition-delay:0.15s">
       <div class="about-list-item">
         <div class="list-icon">✦</div>
         <div class="list-content">
-          <h4>Pixel-Perfect ესთეტიკა</h4>
-          <p>მინიმალისტური და ტრენდული UI დიზაინი</p>
+          <h4 data-lang="about_aesthetic">Pixel-Perfect ესთეტიკა</h4>
+          <p data-lang="about_aesthetic_desc">მინიმალისტური და ტრენდული UI დიზაინი</p>
         </div>
       </div>
       <div class="about-list-item">
         <div class="list-icon">⚡</div>
         <div class="list-content">
-          <h4>ოპტიმიზირებული არქიტექტურა</h4>
-          <p>სწრაფი, უსაფრთხო და მასშტაბირებადი კოდი</p>
+          <h4 data-lang="about_architecture">ოპტიმიზირებული არქიტექტურა</h4>
+          <p data-lang="about_architecture_desc">სწრაფი, უსაფრთხო და მასშტაბირებადი კოდი</p>
         </div>
       </div>
       <div class="about-list-item">
         <div class="list-icon">🛡️</div>
         <div class="list-content">
-          <h4>სრული მხარდაჭერა</h4>
-          <p>24/7 ტექნიკური მონიტორინგი და უსაფრთხოება</p>
+          <h4 data-lang="about_support">სრული მხარდაჭერა</h4>
+          <p data-lang="about_support_desc">24/7 ტექნიკური მონიტორინგი და უსაფრთხოება</p>
         </div>
       </div>
     </div>
@@ -1596,31 +1629,31 @@ body.cursor-text #cursor-ring {
   <div class="booking-container reveal">
     <div class="booking-badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-      უფასო კონსულტაცია
+      <span data-lang="booking_badge">უფასო კონსულტაცია</span>
     </div>
-    <h2 class="booking-title">დაგეგმე გასაუბრება</h2>
-    <p class="booking-desc">შეარჩიე დრო და ვისაუბროთ შენი პროექტის შესახებ — ვადების, ბიუჯეტის, სტილის და სხვა საჭირო საკითხზე. </p>
+    <h2 class="booking-title" data-lang="booking_title">დაგეგმე გასაუბრება</h2>
+    <p class="booking-desc" data-lang="booking_desc">შეარჩიე დრო და ვისაუბროთ შენი პროექტის შესახებ — ვადების, ბიუჯეტის, სტილის და სხვა საჭირო საკითხზე.</p>
 
     <div class="booking-card">
       <div class="booking-info">
         <div class="booking-icon">📞</div>
         <div class="booking-details">
-          <h3>30-წუთიანი Google Meet გასაუბრება</h3>
+          <h3 data-lang="booking_meet">30-წუთიანი Google Meet გასაუბრება</h3>
           <ul class="booking-list">
-            <li>პროექტის საჭიროებების განხილვა</li>
-            <li>ტექნოლოგიური სტეკის შერჩევა</li>
-            <li>ვადების და ბიუჯეტის შეფასება</li>
-            <li>პასუხები ყველა შეკითხვაზე</li>
+            <li data-lang="booking_item_1">პროექტის საჭიროებების განხილვა</li>
+            <li data-lang="booking_item_2">ტექნოლოგიური სტეკის შერჩევა</li>
+            <li data-lang="booking_item_3">ვადების და ბიუჯეტის შეფასება</li>
+            <li data-lang="booking_item_4">პასუხები ყველა შეკითხვაზე</li>
           </ul>
         </div>
       </div>
       <a href="https://calendly.com/kuljanisaba/30min?lid=ygjvde2x51fh&back=1&month=2026-04" target="_blank" class="btn-booking">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        დროის ჩანიშვნა
+        <span data-lang="booking_cta">დროის ჩანიშვნა</span>
       </a>
     </div>
 
-    <p class="booking-note">· კონსულტაცია სრულიად უფასოა და არავითარი ვალდებულება არ შეგექმნება</p>
+    <p class="booking-note" data-lang="booking_note">· კონსულტაცია სრულიად უფასოა და არავითარი ვალდებულება არ შეგექმნება</p>
   </div>
 </section>
 
@@ -1628,28 +1661,28 @@ body.cursor-text #cursor-ring {
 <div id="emailModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h3>პროექტის დეტალები</h3>
+      <h3 data-lang="modal_title">პროექტის დეტალები</h3>
       <button class="modal-close" onclick="closeModal()">&times;</button>
     </div>
     <form id="projectForm" onsubmit="sendEmail(event)">
       <div class="form-group">
-        <label for="userName">სახელი *</label>
-        <input type="text" id="userName" name="userName" required placeholder="თქვენი სახელი">
+        <label for="userName" data-lang="modal_name">სახელი *</label>
+        <input type="text" id="userName" name="userName" required data-lang="modal_name_ph" placeholder="თქვენი სახელი">
       </div>
       <div class="form-group">
-        <label for="userEmail">ელ.ფოსტა *</label>
+        <label for="userEmail" data-lang="modal_email">ელ.ფოსტა *</label>
         <input type="email" id="userEmail" name="userEmail" required placeholder="example@email.com">
       </div>
       <div class="form-group">
-        <label for="companyName">კომპანიის სახელი</label>
-        <input type="text" id="companyName" name="companyName" placeholder="კომპანიის სახელი (არასავალდებულო)">
+        <label for="companyName" data-lang="modal_company">კომპანიის სახელი</label>
+        <input type="text" id="companyName" name="companyName" data-lang="modal_company_ph" placeholder="კომპანიის სახელი (არასავალდებულო)">
       </div>
       <div class="form-group">
-        <label for="userGoals">მოგვიყევი შენი მიზნების შესახებ *</label>
-        <textarea id="userGoals" name="userGoals" rows="4" required placeholder="რა პროექტი გაქვს? რა მიზნები გაქვს?"></textarea>
+        <label for="userGoals" data-lang="modal_goals">მოგვიყევი შენი მიზნების შესახებ *</label>
+        <textarea id="userGoals" name="userGoals" rows="4" required data-lang="modal_goals_ph" placeholder="რა პროექტი გაქვს? რა მიზნები გაქვს?"></textarea>
       </div>
       <div class="calc-summary" id="calcSummary"></div>
-      <button type="submit" class="btn-submit">გაგზავნა →</button>
+      <button type="submit" class="btn-submit" data-lang="modal_submit">გაგზავნა →</button>
     </form>
   </div>
 </div>
@@ -1665,7 +1698,7 @@ body.cursor-text #cursor-ring {
     <div class="custom-alert-icon" id="alertIcon">✓</div>
     <h3 class="custom-alert-title" id="alertTitle">წარმატება</h3>
     <p class="custom-alert-message" id="alertMessage">მოქმედება წარმატებით შესრულდა</p>
-    <button class="btn-alert" onclick="closeCustomAlert()">გასაგებია</button>
+    <button class="btn-alert" onclick="closeCustomAlert()" data-lang="alert_ok">გასაგებია</button>
   </div>
 </div>
 
@@ -1834,15 +1867,16 @@ function openModal() {
     extras.push(cb.closest('.option-item').querySelector('.option-info b').textContent);
   });
   
-  // Build summary HTML
+  // Build summary HTML with translations
+  const t = translations[currentLang];
   summary.innerHTML = `
-    <div class="calc-summary-title">კალკულატორის შედეგები</div>
-    <div class="calc-summary-row"><span>პროექტის ტიპი:</span><span>${projTypeText}</span></div>
-    <div class="calc-summary-row"><span>გვერდების რაოდენობა:</span><span>${pageCount}</span></div>
-    <div class="calc-summary-row"><span>ადმინ პანელი:</span><span>${adminText}</span></div>
-    ${extras.length > 0 ? `<div class="calc-summary-row"><span>დამატებები:</span><span>${extras.join(', ')}</span></div>` : ''}
-    <div class="calc-summary-row"><span>სავარაუდო ღირებულება:</span><span>${totalPrice}</span></div>
-    <div class="calc-summary-row"><span>ვადა:</span><span>${totalDays} დღე</span></div>
+    <div class="calc-summary-title">${t.calc_summary_title || 'კალკულატორის შედეგები'}</div>
+    <div class="calc-summary-row"><span>${t.calc_proj_type}:</span><span>${projTypeText}</span></div>
+    <div class="calc-summary-row"><span>${t.calc_pages}:</span><span>${pageCount}</span></div>
+    <div class="calc-summary-row"><span>${t.calc_cms}:</span><span>${adminText}</span></div>
+    ${extras.length > 0 ? `<div class="calc-summary-row"><span>${t.calc_extras_label}:</span><span>${extras.join(', ')}</span></div>` : ''}
+    <div class="calc-summary-row"><span>${t.calc_result_label}:</span><span>${totalPrice}</span></div>
+    <div class="calc-summary-row"><span>${t.calc_result_days.replace(':', '')}:</span><span>${totalDays} ${t.calc_result_workdays}</span></div>
   `;
   
   modal.classList.add('active');
@@ -1853,6 +1887,55 @@ function closeModal() {
   const modal = document.getElementById('emailModal');
   modal.classList.remove('active');
   document.body.style.overflow = '';
+}
+
+// Helper functions for dynamic translations
+function updateSelectOptions(lang) {
+  const projType = document.getElementById('projType');
+  if (projType) {
+    const options = {
+      ka: ['Landing Page', 'ბიზნეს ვებგვერდი', 'ონლაინ მაღაზია', 'Custom პლატფორმა / SaaS'],
+      en: ['Landing Page', 'Business Website', 'Online Store', 'Custom Platform / SaaS']
+    };
+    const labels = options[lang] || options.ka;
+    projType.options[0].text = labels[0];
+    projType.options[1].text = labels[1];
+    projType.options[2].text = labels[2];
+    projType.options[3].text = labels[3];
+  }
+}
+
+function updateCalcLabels(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  
+  // Update breakdown labels
+  const brBase = document.querySelector('#br-base span:first-child');
+  const brPages = document.querySelector('#br-pages span:first-child');
+  const brAdmin = document.querySelector('#br-admin span:first-child');
+  const brExtras = document.querySelector('#br-extras span:first-child');
+  
+  if (brBase) brBase.textContent = t.calc_base_price;
+  if (brPages) brPages.textContent = t.calc_extra_pages;
+  if (brAdmin) brAdmin.textContent = t.calc_admin || 'Admin Panel';
+  if (brExtras) brExtras.textContent = t.calc_extras_label;
+  
+  // Update result panel
+  const resultLabel = document.querySelector('.result-label');
+  const resultDays = document.querySelector('.result-days');
+  
+  if (resultLabel) resultLabel.textContent = t.calc_result_label;
+  if (resultDays) {
+    const days = document.getElementById('totalDaysDesktop')?.textContent || '5';
+    resultDays.innerHTML = `${t.calc_result_days} <strong id="totalDaysDesktop">${days}</strong> ${t.calc_result_workdays}`;
+  }
+  
+  // Update mobile footer
+  const mfDays = document.querySelector('.mf-days');
+  if (mfDays) {
+    const days = document.getElementById('totalDaysMobile')?.textContent || '5';
+    mfDays.innerHTML = `${t.calc_result_days} <strong id="totalDaysMobile">${days}</strong> ${t.calc_result_workdays === 'work days' ? 'days' : 'დღე'}`;
+  }
 }
 
 // ===== CUSTOM ALERT FUNCTIONS =====
@@ -1907,7 +1990,7 @@ function sendEmail(e) {
   
   const submitBtn = e.target.querySelector('.btn-submit');
   submitBtn.disabled = true;
-  submitBtn.textContent = 'იგზავნება...';
+  submitBtn.textContent = translations[currentLang].modal_sending || 'იგზავნება...';
   
   // Get user inputs
   const userName = document.getElementById('userName').value;
@@ -1975,18 +2058,20 @@ function sendEmail(e) {
   // Send email using EmailJS
   emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams)
     .then(function(response) {
-      showAlert('გმადლობთ!', 'თქვენი მოთხოვნა წარმატებით გაიგზავნა. ჩვენ დაგიკავშირდებით 24 საათში.', 'success');
+      const t = translations[currentLang];
+      showAlert(t.alert_success, t.alert_success_msg, 'success');
       closeModal();
       document.getElementById('projectForm').reset();
     }, function(error) {
       console.error('EmailJS Full Error:', error);
       console.error('Error text:', error.text);
       console.error('Error status:', error.status);
-      showAlert('შეცდომა', 'სამწუხაროდ, წერილის გაგზავნა ვერ მოხერხდა. შეცდომა: ' + (error.text || 'უცნობი შეცდომა') + '. გთხოვთ, სცადოთ თავიდან.', 'error');
+      const t = translations[currentLang];
+      showAlert(t.alert_error, t.alert_error_msg, 'error');
     })
     .finally(function() {
       submitBtn.disabled = false;
-      submitBtn.textContent = 'გაგზავნა →';
+      submitBtn.textContent = translations[currentLang].modal_submit;
     });
 }
 
@@ -2062,6 +2147,239 @@ window.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     calcObserver.observe(calcSection);
   }
+});
+
+// ===== LANGUAGE SWITCHER =====
+const translations = {
+  ka: {
+    nav_cta: 'შეხვედრის დაგეგმვა',
+    services_title: 'ჩვენი სერვისები',
+    services_subtitle: 'იდეიდან მზა პროდუქტამდე.',
+    service_1_title: 'ბიზნეს ავტომატიზაცია',
+    service_1_desc: 'ჩვენი პლატფორმები გარდაქმნის თქვენს ყოველდღიურ რუტინულ საქმეებს ავტომატიზებულ პროცესებად, რაც საშუალებას გაძლევთ დაზოგოთ დრო და ფოკუსირდეთ მთავარ მიზნებზე.',
+    service_2_title: 'მაღალი დონის ვებ-დეველოპმენტი',
+    service_2_desc: 'გუნდი უზრუნველყოფს სრულ ციფრულ ციკლს: ჩვენ თქვენთან ერთად გავდივართ გზას პირველადი კონცეფციიდან, დიზაინიდან და დეველოპმენტიდან პროექტის წარმატებულ გაშვებამდე.',
+    service_3_title: 'SEO და ტექნიკური მხარდაჭერა',
+    service_3_desc: 'ჩვენ უზრუნველყოფთ თქვენი საიტის მუდმივ ტექნიკურ გამართულობას და ვზრუნავთ მის მაღალ პოზიციებზე საძიებო სისტემებში.',
+    service_4_title: 'პრემიუმ UI/UX დიზაინი',
+    service_4_desc: 'ვქმნით დახვეწილ ვიზუალურ ესთეტიკას, რომელიც არა მხოლოდ ლამაზია, არამედ სრულად არის მორგებული მომხმარებლის საჭიროებებსა და კომფორტზე.',
+    stat_projects: 'დასრულებული პროექტი',
+    stat_clients: 'კმაყოფილი კლიენტი %',
+    stat_days: 'საშ. ვადა დღეებში',
+    stat_years: 'წლის გამოცდილება',
+    calc_title: 'ღირებულების კალკულატორი',
+    calc_subtitle: 'აიღეთ სავარაუდო ფასი — სწრაფად და გამჭვირვალედ',
+    calc_proj_type: 'პროექტის ტიპი',
+    calc_pages: 'გვერდების რაოდენობა',
+    calc_pages_unit: 'გვერდი',
+    calc_cms: 'ადმინ პანელი (CMS)',
+    calc_cms_none: 'არცერთი',
+    calc_cms_none_desc: 'სტატიკური საიტი',
+    calc_cms_basic: 'საბაზისო CMS',
+    calc_cms_basic_desc: 'ტექსტები, სურათები, მართვა',
+    calc_cms_full: 'სრული კონტროლი',
+    calc_cms_full_desc: 'მომხმარებლები, ანალიტიკა, DB',
+    calc_extras: 'დამატებითი ფუნქციები',
+    calc_extra_payment: 'გადახდის სისტემები',
+    calc_extra_payment_desc: 'Stripe, ბანკები, ონლაინ ოპერაციები',
+    calc_extra_lang: 'დამატებითი ენა(ები)',
+    calc_extra_lang_desc: 'თითო დამატებითი ენა',
+    calc_extra_auth: 'ავტორიზაციის სისტემა',
+    calc_extra_auth_desc: 'პირადი კაბინეტები',
+    calc_infra: 'ინფრასტრუქტურა & SEO',
+    calc_result_label: 'სავარაუდო ღირებულება',
+    calc_result_days: 'ვადა:',
+    calc_result_days_short: 'ვადა:',
+    calc_result_workdays: 'სამუშაო დღე',
+    calc_days_short: 'დღე',
+    calc_base_price: 'საბაზო ღირებულება',
+    calc_extra_pages: 'დამატებითი გვერდები',
+    calc_admin: 'ადმინ პანელი',
+    calc_extras_label: 'დამატებები',
+    calc_start: 'დაწყება →',
+    calc_consult: 'უფასო კონსულტაცია · პასუხი 24 საათში',
+    calc_summary_title: 'კალკულატორის შედეგები',
+    work_title: 'ჩვენი ნამუშევრები',
+    work_subtitle: 'პროექტები, რომლებითაც ვამაყობთ',
+    work_1_title: 'ონლაინ მაღაზია',
+    work_2_title: 'კორპორატიული ვებგვერდი',
+    work_3_title: 'ბიზნესის მართვის სისტემა',
+    work_4_title: 'პრომო გვერდი',
+    about_title: 'რატომ DEVSK?',
+    about_desc: 'ჩვენ ვართ მცირე, მაგრამ ეფექტური გუნდი, რომელიც უყურებს თითოეულ პროექტს როგორც საკუთარს. ყოველი ხაზი კოდი, ყოველი პიქსელი დიზაინში — ყველაფერი შენს წარმატებაზეა მიმართული.',
+    about_aesthetic: 'Pixel-Perfect ესთეტიკა',
+    about_aesthetic_desc: 'მინიმალისტური და ტრენდული UI დიზაინი',
+    about_architecture: 'ოპტიმიზირებული არქიტექტურა',
+    about_architecture_desc: 'სწრაფი, უსაფრთხო და მასშტაბირებადი კოდი',
+    about_support: 'სრული მხარდაჭერა',
+    about_support_desc: '24/7 ტექნიკური მონიტორინგი და უსაფრთხოება',
+    booking_badge: 'უფასო კონსულტაცია',
+    booking_title: 'დაგეგმე გასაუბრება',
+    booking_desc: 'შეარჩიე დრო და ვისაუბროთ შენი პროექტის შესახებ — ვადების, ბიუჯეტის, სტილის და სხვა საჭირო საკითხზე.',
+    booking_meet: '30-წუთიანი Google Meet გასაუბრება',
+    booking_item_1: 'პროექტის საჭიროებების განხილვა',
+    booking_item_2: 'ტექნოლოგიური სტეკის შერჩევა',
+    booking_item_3: 'ვადების და ბიუჯეტის შეფასება',
+    booking_item_4: 'პასუხები ყველა შეკითხვაზე',
+    booking_cta: 'დროის ჩანიშვნა',
+    booking_note: '· კონსულტაცია სრულიად უფასოა და არავითარი ვალდებულება არ შეგექმნება',
+    modal_title: 'პროექტის დეტალები',
+    modal_name: 'სახელი *',
+    modal_name_ph: 'თქვენი სახელი',
+    modal_email: 'ელ.ფოსტა *',
+    modal_company: 'კომპანიის სახელი',
+    modal_company_ph: 'კომპანიის სახელი (არასავალდებულო)',
+    modal_goals: 'მოგვიყევი შენი მიზნების შესახებ *',
+    modal_goals_ph: 'რა პროექტი გაქვს? რა მიზნები გაქვს?',
+    modal_submit: 'გაგზავნა →',
+    modal_sending: 'იგზავნება...',
+    alert_success: 'გმადლობთ!',
+    alert_success_msg: 'თქვენი მოთხოვნა წარმატებით გაიგზავნა. ჩვენ დაგიკავშირდებით 24 საათში.',
+    alert_error: 'შეცდომა',
+    alert_error_msg: 'სამწუხაროდ, წერილის გაგზავნა ვერ მოხერხდა. გთხოვთ, სცადოთ თავიდან.',
+    alert_ok: 'გასაგებია',
+    hero_line1: 'დახვეწილი ვებგვერდი',
+    hero_line2: 'მეტი მომხმარებელი',
+    hero_subtitle: 'ჩვენ ვქმნით თანამედროვე, სწრაფ და მომხმარებელზე მორგებულ ვებგვერდებს, რომლებიც რეალური შედეგებს იძლევიან.',
+    about_heading: 'ჩვენ ვქმნით მომავალს',
+    about_text: 'ჩვენ ვართ ციფრული სააგენტო, რომელიც აერთიანებს პრემიუმ ესთეტიკას და ულტრათანამედროვე ვებ-ტექნოლოგიებს. ვეხმარებით ბიზნესებს ზრდაში.',
+    cta_primary: 'პროექტის დაწყება →',
+    cta_secondary: 'ნამუშევრები ↓'
+  },
+  en: {
+    nav_cta: 'Book a Call',
+    services_title: 'Our Services',
+    services_subtitle: 'From idea to ready product.',
+    service_1_title: 'Business Automation',
+    service_1_desc: 'Our platforms transform your daily routine tasks into automated processes, allowing you to save time and focus on main goals.',
+    service_2_title: 'High-Level Web Development',
+    service_2_desc: 'The team provides a complete digital cycle: we walk the path with you from initial concept, design and development to successful project launch.',
+    service_3_title: 'SEO & Technical Support',
+    service_3_desc: 'We ensure constant technical performance of your site and take care of its high rankings in search engines.',
+    service_4_title: 'Premium UI/UX Design',
+    service_4_desc: 'We create refined visual aesthetics that are not only beautiful but fully tailored to user needs and comfort.',
+    stat_projects: 'Completed Projects',
+    stat_clients: 'Happy Clients %',
+    stat_days: 'Avg. Timeline Days',
+    stat_years: 'Years Experience',
+    calc_title: 'Price Calculator',
+    calc_subtitle: 'Get an estimated price — fast and transparent',
+    calc_proj_type: 'Project Type',
+    calc_pages: 'Number of Pages',
+    calc_pages_unit: 'pages',
+    calc_cms: 'Admin Panel (CMS)',
+    calc_cms_none: 'None',
+    calc_cms_none_desc: 'Static site',
+    calc_cms_basic: 'Basic CMS',
+    calc_cms_basic_desc: 'Texts, images, management',
+    calc_cms_full: 'Full Control',
+    calc_cms_full_desc: 'Users, analytics, DB',
+    calc_extras: 'Additional Features',
+    calc_extra_payment: 'Payment Systems',
+    calc_extra_payment_desc: 'Stripe, banks, online operations',
+    calc_extra_lang: 'Additional Language(s)',
+    calc_extra_lang_desc: 'Each additional language',
+    calc_extra_auth: 'Authorization System',
+    calc_extra_auth_desc: 'Personal accounts',
+    calc_infra: 'Infrastructure & SEO',
+    calc_result_label: 'Estimated Cost',
+    calc_result_days: 'Timeline:',
+    calc_result_days_short: 'Timeline:',
+    calc_result_workdays: 'work days',
+    calc_days_short: 'days',
+    calc_base_price: 'Base Price',
+    calc_extra_pages: 'Additional Pages',
+    calc_admin: 'Admin Panel',
+    calc_extras_label: 'Extras',
+    calc_start: 'Get Started →',
+    calc_consult: 'Free consultation · Response within 24h',
+    calc_summary_title: 'Calculator Results',
+    work_title: 'Our Work',
+    work_subtitle: 'Projects we are proud of',
+    work_1_title: 'Online Store',
+    work_2_title: 'Corporate Website',
+    work_3_title: 'Business Management System',
+    work_4_title: 'Promo Page',
+    about_title: 'Why DEVSK?',
+    about_desc: 'We are a small but efficient team that treats every project as our own. Every line of code, every pixel in design — everything is aimed at your success.',
+    about_aesthetic: 'Pixel-Perfect Aesthetic',
+    about_aesthetic_desc: 'Minimalist and trendy UI design',
+    about_architecture: 'Optimized Architecture',
+    about_architecture_desc: 'Fast, secure and scalable code',
+    about_support: 'Full Support',
+    about_support_desc: '24/7 technical monitoring and security',
+    booking_badge: 'Free Consultation',
+    booking_title: 'Schedule a Call',
+    booking_desc: 'Choose a time and let us talk about your project — timeline, budget, style and other important questions.',
+    booking_meet: '30-minute Google Meet consultation',
+    booking_item_1: 'Project requirements discussion',
+    booking_item_2: 'Technology stack selection',
+    booking_item_3: 'Timeline and budget assessment',
+    booking_item_4: 'Answers to all your questions',
+    booking_cta: 'Schedule Time',
+    booking_note: '· The consultation is completely free and no obligation',
+    modal_title: 'Project Details',
+    modal_name: 'Name *',
+    modal_name_ph: 'Your name',
+    modal_email: 'Email *',
+    modal_company: 'Company Name',
+    modal_company_ph: 'Company name (optional)',
+    modal_goals: 'Tell us about your goals *',
+    modal_goals_ph: 'What project do you have? What are your goals?',
+    modal_submit: 'Send →',
+    modal_sending: 'Sending...',
+    alert_success: 'Thank You!',
+    alert_success_msg: 'Your request has been sent successfully. We will contact you within 24 hours.',
+    alert_error: 'Error',
+    alert_error_msg: 'Unfortunately, the email could not be sent. Please try again.',
+    alert_ok: 'Got it',
+    hero_line1: 'Refined Website',
+    hero_line2: 'More Customers',
+    hero_subtitle: 'We create modern, fast and user-friendly websites that deliver real results.',
+    about_heading: 'We Create The Future',
+    about_text: 'We are a digital agency that combines premium aesthetics with ultra-modern web technologies. We help businesses grow.',
+    cta_primary: 'Start Project →',
+    cta_secondary: 'Our Work ↓'
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'ka';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  
+  // Update button states
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.langCode === lang);
+  });
+  
+  // Update all elements with data-lang attribute
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    const key = el.dataset.lang;
+    if (translations[lang] && translations[lang][key]) {
+      // Handle placeholders for inputs
+      if (el.hasAttribute('placeholder')) {
+        el.placeholder = translations[lang][key];
+      } else {
+        el.textContent = translations[lang][key];
+      }
+    }
+  });
+  
+  // Update select options
+  updateSelectOptions(lang);
+  
+  // Update calc summary labels
+  updateCalcLabels(lang);
+  
+  // Update page title
+  document.title = lang === 'en' ? 'DEVSK — Web Development Studio' : 'DEVSK — ვებ დეველოპმენტის სტუდია';
+}
+
+// Initialize language on load
+document.addEventListener('DOMContentLoaded', () => {
+  setLanguage(currentLang);
 });
 </script>
 
