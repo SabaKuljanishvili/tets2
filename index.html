@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DEVSK - Premium web development studio specializing in modern, fast, and user-friendly websites. From landing pages to custom SaaS platforms. Book your free consultation today.">
 <title>DEVSK</title>
  <link rel="icon" type="image/png" id="dynamicFavicon" href="https://i.postimg.cc/mr1Kx5FF/newlogo3-c.png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -27,7 +28,7 @@
   --primary-dim: rgba(100,112,255,0.15);
   --accent: #B3BCFF;
   --text: #F0F0FF;
-  --dim: #9090C0;
+  --dim: #A0A0D0;
   --glow: rgba(100,112,255,0.2);
   --font: 'SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
 }
@@ -41,6 +42,19 @@
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
+/* Visually hidden for accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 body{
   font-family:var(--font);
@@ -274,7 +288,7 @@ nav{
   mask-image:linear-gradient(to bottom,transparent 0%,black 20%,black 80%,transparent 100%);
 }
 
-.hero-bg img{width:100%;display:block}
+.hero-bg img{width:100%;height:auto;display:block;object-fit:contain}
 
 .scroll-hint{
   position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
@@ -849,8 +863,9 @@ footer{
 .reveal{
   opacity:0;transform:translateY(28px);
   transition:opacity 0.7s cubic-bezier(.23,1,.32,1),transform 0.7s cubic-bezier(.23,1,.32,1);
+  contain: layout style paint;
 }
-.reveal.revealed{opacity:1;transform:translateY(0)}
+.reveal.revealed{opacity:1;transform:translateY(0);contain: layout style;}
 
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(16px)}
@@ -886,6 +901,8 @@ footer{
   .nav-cta{padding:10px;background:transparent}
   .nav-cta-icon{display:inline-flex;font-size:18px;color:var(--primary)}
   .nav-cta-text{display:none}
+  .hero-bg{top:350px}
+  .hero-bg img{object-fit:cover;max-height:50vh}
 }
 
 /* ===== CUSTOM CURSOR ===== */
@@ -1037,6 +1054,7 @@ body.cursor-text #cursor-ring {
 }
 .form-group {
   margin-bottom: 20px;
+  contain: layout style paint;
 }
 .form-group label {
   display: block;
@@ -1317,6 +1335,7 @@ body.cursor-text #cursor-ring {
 <div id="cursor-ring"></div>
 <div id="cursor-trail"></div>
 
+<main>
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo">DEV<span>SK</span></a>
@@ -1332,7 +1351,7 @@ body.cursor-text #cursor-ring {
       <span class="nav-cta-text" data-lang="nav_cta">Book a Call</span>
     </button>
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLanguage('ka')" data-lang-code="ka">KA</button>
+      <button class="lang-btn active" onclick="setLanguage('ka')" data-lang-code="ka">ქარ</button>
       <button class="lang-btn" onclick="setLanguage('en')" data-lang-code="en">EN</button>
     </div>
   </div>
@@ -1350,14 +1369,14 @@ body.cursor-text #cursor-ring {
       <span class="line1" data-lang="hero_line1">დახვეწილი ვებგვერდი</span>
       <span class="line2" data-lang="hero_line2">მეტი მომხმარებელი</span>
     </h1>
-    <p class="hero-sub" data-lang="hero_subtitle">ჩვენ ვქმნით თანამედროვე, სწრაფ და მომხმარებელზე მორგებულ ვებგვერდებს, რომლებიც რეალური შედეგებს იძლევიან.</p>
+    <p class="hero-sub" data-lang="hero_subtitle">ჩვენ ვქმნით თანამედროვე, სწრაფ და მომხმარებელზე მორგებულ ვებგვერდებს, რომელიც რეალურ შედეგა იძლევა.</p>
     <div class="hero-actions">
       <a class="btn-primary" href="#calculator" data-lang="cta_primary">პროექტის დაწყება →</a>
       <a class="btn-ghost" href="#work" data-lang="cta_secondary">ნამუშევრები ↓</a>
     </div>
   </div>
   <div class="hero-bg">
-    <img src="https://i.postimg.cc/3wdLCB6f/Metallic-flow-2-(1)-(1).png" alt="">
+    <img src="https://i.postimg.cc/C5Lj9qHt/Metallic-flow-2-(1)-(1).webp" alt="" width="1200" height="800" loading="lazy">
   </div>
   <div class="scroll-hint">
     <div class="scroll-line"></div>
@@ -1393,7 +1412,7 @@ body.cursor-text #cursor-ring {
       <p data-lang="service_4_desc">ვქმნით დახვეწილ ვიზუალურ ესთეტიკას, რომელიც არა მხოლოდ ლამაზია, არამედ სრულად არის მორგებული მომხმარებლის საჭიროებებსა და კომფორტზე.</p>
     </div>
     <div class="service-card logo-card reveal" style="transition-delay:0.25s">   
-       <img src="https://i.postimg.cc/GhsLQqXT/newlogo3.png" alt="" srcset="">
+       <img src="https://i.postimg.cc/GhsLQqXT/newlogo3.webp" alt="DEVSK Logo" width="200" height="200" loading="lazy">
     </div>
 
   </div>
@@ -1415,7 +1434,7 @@ body.cursor-text #cursor-ring {
       <div class="stat-label" data-lang="stat_days">საშ. ვადა დღეებში</div>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.3s">
-      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-num" data-target="2">0</div>
       <div class="stat-label" data-lang="stat_years">წლის გამოცდილება</div>
     </div>
   </div>
@@ -1433,7 +1452,8 @@ body.cursor-text #cursor-ring {
       <div class="card reveal">
         <div class="card-label" data-lang="calc_proj_type">პროექტის ტიპი</div>
         <div class="select-wrap">
-          <select id="projType" onchange="calc()">
+          <label for="projType" class="visually-hidden">Project Type</label>
+          <select id="projType" onchange="calc()" aria-label="Project Type">
             <option value="600"  data-days="5">Landing Page</option>
             <option value="1500" data-days="12">ბიზნეს ვებგვერდი</option>
             <option value="2800" data-days="25">ონლაინ მაღაზია</option>
@@ -1447,25 +1467,26 @@ body.cursor-text #cursor-ring {
           <div class="slider-big" id="pageCountDisplay">5</div>
           <div class="slider-unit" data-lang="calc_pages_unit">გვერდი</div>
         </div>
-        <input type="range" id="pageCount" min="1" max="20" value="5" oninput="updateSlider(this);calc()">
+        <label for="pageCount" class="visually-hidden">Number of Pages</label>
+        <input type="range" id="pageCount" min="1" max="20" value="5" oninput="updateSlider(this);calc()" aria-label="Number of Pages">
       </div>
       <div class="card reveal" style="transition-delay:0.1s">
         <div class="card-label" data-lang="calc_cms">ადმინ პანელი (CMS)</div>
         <div class="option-list">
           <label class="option-item active">
-            <input type="radio" name="admin" value="0" data-days="0" checked onchange="calc()">
+            <input type="radio" name="admin" value="0" data-days="0" checked onchange="calc()" aria-label="No admin panel">
             <div class="indicator"></div>
             <div class="option-info"><b data-lang="calc_cms_none">არცერთი</b><span data-lang="calc_cms_none_desc">სტატიკური საიტი</span></div>
             <div class="option-price">—</div>
           </label>
           <label class="option-item">
-            <input type="radio" name="admin" value="500" data-days="5" onchange="calc()">
+            <input type="radio" name="admin" value="500" data-days="5" onchange="calc()" aria-label="Basic CMS">
             <div class="indicator"></div>
             <div class="option-info"><b data-lang="calc_cms_basic">საბაზისო CMS</b><span data-lang="calc_cms_basic_desc">ტექსტები, სურათები, მართვა</span></div>
             <div class="option-price">+500 ₾</div>
           </label>
           <label class="option-item">
-            <input type="radio" name="admin" value="1200" data-days="12" onchange="calc()">
+            <input type="radio" name="admin" value="1200" data-days="12" onchange="calc()" aria-label="Full control CMS">
             <div class="indicator"></div>
             <div class="option-info"><b data-lang="calc_cms_full">სრული კონტროლი</b><span data-lang="calc_cms_full_desc">მომხმარებლები, ანალიტიკა, DB</span></div>
             <div class="option-price">+1,200 ₾</div>
@@ -1476,19 +1497,19 @@ body.cursor-text #cursor-ring {
         <div class="card-label" data-lang="calc_extras">დამატებითი ფუნქციები</div>
         <div class="option-list">
           <label class="option-item">
-            <input type="checkbox" class="extra" value="400" data-days="4" onchange="calc()">
+            <input type="checkbox" class="extra" value="400" data-days="4" onchange="calc()" aria-label="Payment systems">
             <div class="indicator sq"></div>
             <div class="option-info"><b data-lang="calc_extra_payment">გადახდის სისტემები</b><span data-lang="calc_extra_payment_desc">Stripe, ბანკები, ონლაინ ოპერაციები</span></div>
             <div class="option-price">+400 ₾</div>
           </label>
           <label class="option-item">
-            <input type="checkbox" class="extra" value="300" data-days="3" onchange="calc()">
+            <input type="checkbox" class="extra" value="300" data-days="3" onchange="calc()" aria-label="Additional languages">
             <div class="indicator sq"></div>
             <div class="option-info"><b data-lang="calc_extra_lang">დამატებითი ენა(ები)</b><span data-lang="calc_extra_lang_desc">თითო დამატებითი ენა</span></div>
             <div class="option-price">+300 ₾</div>
           </label>
           <label class="option-item">
-            <input type="checkbox" class="extra" value="600" data-days="7" onchange="calc()">
+            <input type="checkbox" class="extra" value="600" data-days="7" onchange="calc()" aria-label="Authorization system">
             <div class="indicator sq"></div>
             <div class="option-info"><b data-lang="calc_extra_auth">ავტორიზაციის სისტემა</b><span data-lang="calc_extra_auth_desc">პირადი კაბინეტები</span></div>
             <div class="option-price">+600 ₾</div>
@@ -1499,13 +1520,13 @@ body.cursor-text #cursor-ring {
         <div class="card-label" data-lang="calc_infra">ინფრასტრუქტურა & SEO</div>
         <div class="option-list">
           <label class="option-item">
-            <input type="checkbox" class="extra" value="350" data-days="3" onchange="calc()">
+            <input type="checkbox" class="extra" value="350" data-days="3" onchange="calc()" aria-label="Advanced SEO">
             <div class="indicator sq"></div>
             <div class="option-info"><b>Advanced SEO</b><span>ტექნიკური ოპტიმიზაცია, Core Web Vitals</span></div>
             <div class="option-price">+350 ₾</div>
           </label>
           <label class="option-item">
-            <input type="checkbox" class="extra" value="250" data-days="1" onchange="calc()">
+            <input type="checkbox" class="extra" value="250" data-days="1" onchange="calc()" aria-label="Server setup">
             <div class="indicator sq"></div>
             <div class="option-info"><b>Server Setup</b><span>Docker / Linux კონფიგურაცია</span></div>
             <div class="option-price">+250 ₾</div>
@@ -1564,7 +1585,7 @@ body.cursor-text #cursor-ring {
   <div class="work-grid">
     <a href="#" class="work-card reveal">
       <div class="work-img-wrapper">
-        <img src="https://i.postimg.cc/XJDj2FfJ/p5Mkx.jpg" class="work-img" alt="">
+        <img src="https://i.postimg.cc/XJDj2FfJ/p5Mkx.webp" class="work-img" alt="E-Commerce Project" width="600" height="400" loading="lazy">
       </div>
       <div class="work-info">
         <div class="work-cat">E-Commerce</div>
@@ -1574,7 +1595,7 @@ body.cursor-text #cursor-ring {
     </a>
     <a href="#" class="work-card reveal" style="transition-delay:0.1s">
       <div class="work-img-wrapper">
-        <img src="https://i.postimg.cc/8zV1nT6d/Mq-HXI.jpg" class="work-img" alt="">
+        <img src="https://i.postimg.cc/8zV1nT6d/Mq-HXI.webp" class="work-img" alt="Corporate Platform" width="600" height="400" loading="lazy">
       </div>
       <div class="work-info">
         <div class="work-cat">Corporate Platform</div>
@@ -1584,7 +1605,7 @@ body.cursor-text #cursor-ring {
     </a>
     <a href="#" class="work-card reveal" style="transition-delay:0.15s">
       <div class="work-img-wrapper">
-        <img src="https://i.postimg.cc/mrBghTZL/Gemini-Generated-Image-ux7degux7degux7d.png" class="work-img" alt="">
+        <img src="https://i.postimg.cc/wvkXWVJf/Gemini-Generated-Image-ux7degux7degux7d.webp" class="work-img" alt="Web App SaaS" width="600" height="400" loading="lazy">
       </div>
       <div class="work-info">
         <div class="work-cat">Web App / SaaS</div>
@@ -1594,7 +1615,7 @@ body.cursor-text #cursor-ring {
     </a>
     <a href="#" class="work-card reveal" style="transition-delay:0.2s">
       <div class="work-img-wrapper">
-        <img src="https://i.postimg.cc/SQvRV0df/Chat-GPT-Image-Apr-29-2026-01-21-06-AM.png" class="work-img" alt="">
+        <img src="https://i.postimg.cc/26xQHwvt/Chat-GPT-Image-Apr-29-2026-01-21-06-AM.webp" class="work-img" alt="Landing Page" width="600" height="400" loading="lazy">
       </div>
       <div class="work-info">
         <div class="work-cat">Landing Page</div>
@@ -1668,7 +1689,7 @@ body.cursor-text #cursor-ring {
       </a>
     </div>
 
-    <p class="booking-note" data-lang="booking_note">· კონსულტაცია სრულიად უფასოა და არავითარი ვალდებულება არ შეგექმნება</p>
+    <p class="booking-note" data-lang="booking_note">· კონსულტაცია უფასოა და არავითარი ვალდებულება არ შეგექმნება</p>
   </div>
 </section>
 
@@ -1702,6 +1723,8 @@ body.cursor-text #cursor-ring {
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="footer-logo">DEV<span>SK</span></div>
   <div class="footer-copy">© 2026 DEVSK. All rights reserved.</div>
@@ -1718,10 +1741,10 @@ body.cursor-text #cursor-ring {
 </div>
 
 <!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 <!-- GSAP for smooth scrolling -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js" defer></script>
 <script>
 let prevPrice = 600;
 
@@ -2237,7 +2260,7 @@ const translations = {
     booking_item_3: 'ვადების და ბიუჯეტის შეფასება',
     booking_item_4: 'პასუხები ყველა შეკითხვაზე',
     booking_cta: 'დროის ჩანიშვნა',
-    booking_note: '· კონსულტაცია სრულიად უფასოა და არავითარი ვალდებულება არ შეგექმნება',
+    booking_note: '· კონსულტაცია უფასოა და არავითარი ვალდებულება არ შეგექმნება',
     modal_title: 'პროექტის დეტალები',
     modal_name: 'სახელი *',
     modal_name_ph: 'თქვენი სახელი',
@@ -2578,20 +2601,22 @@ document.querySelectorAll('a[href^="#"]').forEach(el => {
   });
 });
 
-// Smooth scroll for anchor buttons with GSAP
-document.querySelectorAll('.btn-primary[href^="#"], .btn-ghost[href^="#"]').forEach(btn => {
+// Instant scroll for hero buttons (no animation)
+document.querySelectorAll('.hero-actions .btn-primary[href^="#"], .hero-actions .btn-ghost[href^="#"]').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     const targetId = btn.getAttribute('href');
     const targetSection = document.querySelector(targetId);
-    if (targetSection && typeof gsap !== 'undefined') {
-      gsap.to(window, {
-        duration: 1.2,
-        scrollTo: { y: targetSection, offsetY: 70 },
-        ease: "power3.inOut"
+    if (targetSection) {
+      // Disable smooth scroll temporarily for instant jump
+      const html = document.documentElement;
+      const originalScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      // Restore smooth scroll for other interactions
+      requestAnimationFrame(() => {
+        html.style.scrollBehavior = originalScrollBehavior || 'smooth';
       });
-    } else if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 });
