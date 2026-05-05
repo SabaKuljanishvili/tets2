@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="DEVSK - Premium web development studio specializing in modern, fast, and user-friendly websites. From landing pages to custom SaaS platforms. Book your free consultation today.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https: data:; connect-src 'self' https://api.emailjs.com; frame-src 'none'; base-uri 'self'; form-action 'self';">
 <title>DEVSK</title>
- <link rel="icon" type="image/png" id="dynamicFavicon" href="https://i.postimg.cc/mr1Kx5FF/newlogo3-c.png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="icon" type="image/png" id="dynamicFavicon" href="https://i.postimg.cc/mr1Kx5FF/newlogo3-c.png">
+<!-- Resource hints for performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://i.postimg.cc" crossorigin>
+<!-- Preload critical resources -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"></noscript>
+<!-- Deferred non-critical CSS -->
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 <style>
 @font-face {
   font-family: 'Exbed';
@@ -28,7 +37,7 @@
   --primary-dim: rgba(100,112,255,0.15);
   --accent: #B3BCFF;
   --text: #F0F0FF;
-  --dim: #A0A0D0;
+  --dim: #B0B0E0;
   --glow: rgba(100,112,255,0.2);
   --font: 'SF Pro Display',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
 }
@@ -205,11 +214,11 @@ nav{
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   padding:6px 16px;
-  border:1px solid rgba(100,112,255,0.3);
+  border:1px solid rgba(100,112,255,0.5);
   border-radius:100px;
   font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:32px;
-  background:rgba(100,112,255,0.05);
+  color:var(--text);margin-bottom:32px;
+  background:rgba(100,112,255,0.08);
   animation:heroFadeUp 1s cubic-bezier(.23,1,.32,1) 0.1s both;
 }
 .hero-eyebrow-dot{
@@ -309,10 +318,10 @@ nav{
 .section-tag{
   display:inline-flex;align-items:center;gap:6px;
   font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:16px;
+  color:var(--text);margin-bottom:16px;
 }
 .section-tag::before{
-  content:'';width:20px;height:1px;background:var(--accent);
+  content:'';width:20px;height:1px;background:var(--text);
 }
 
 /* ===== SERVICES ===== */
@@ -672,7 +681,7 @@ input[type=range]::-moz-range-track{
 .work-info{padding:0 8px 8px}
 .work-cat{
   font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px;font-weight:600;
+  color:var(--text);margin-bottom:10px;font-weight:600;
 }
 .work-info h3{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-0.01em}
 .work-link{
@@ -692,9 +701,9 @@ input[type=range]::-moz-range-track{
 }
 .about-badge{
   display:inline-block;padding:7px 16px;
-  background:rgba(100,112,255,0.08);
-  border:1px solid rgba(100,112,255,0.25);
-  color:var(--accent);border-radius:100px;
+  background:rgba(100,112,255,0.12);
+  border:1px solid rgba(100,112,255,0.4);
+  color:var(--text);border-radius:100px;
   font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
   margin-bottom:24px;
 }
@@ -2438,18 +2447,27 @@ document.addEventListener('DOMContentLoaded', () => {
   let mouseX = -100, mouseY = -100;
   let ringX = -100, ringY = -100;
   let rafId;
-
-  // Trail dots
-  const TRAIL_COUNT = 8;
-  const trail = [];
+  let trail = [];
   const trailContainer = document.getElementById('cursor-trail');
-  for (let i = 0; i < TRAIL_COUNT; i++) {
-    const d = document.createElement('div');
-    d.className = 'cursor-trail-dot';
-    d.style.opacity = (1 - i / TRAIL_COUNT) * 0.4;
-    d.style.width = d.style.height = (4 - i * 0.3) + 'px';
-    trailContainer.appendChild(d);
-    trail.push({ el: d, x: -100, y: -100 });
+
+  // Defer trail creation to idle time
+  function createTrail() {
+    const TRAIL_COUNT = 8;
+    for (let i = 0; i < TRAIL_COUNT; i++) {
+      const d = document.createElement('div');
+      d.className = 'cursor-trail-dot';
+      d.style.opacity = (1 - i / TRAIL_COUNT) * 0.4;
+      d.style.width = d.style.height = (4 - i * 0.3) + 'px';
+      trailContainer.appendChild(d);
+      trail.push({ el: d, x: -100, y: -100 });
+    }
+  }
+
+  // Schedule trail creation during idle time or immediately if supported
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(createTrail, { timeout: 100 });
+  } else {
+    setTimeout(createTrail, 0);
   }
 
   document.addEventListener('mousemove', e => {
@@ -2489,17 +2507,19 @@ document.addEventListener('DOMContentLoaded', () => {
     ring.style.left = ringX + 'px';
     ring.style.top = ringY + 'px';
 
-    // Trail
-    for (let i = TRAIL_COUNT - 1; i > 0; i--) {
-      trail[i].x = lerp(trail[i].x, trail[i-1].x, 0.35);
-      trail[i].y = lerp(trail[i].y, trail[i-1].y, 0.35);
-      trail[i].el.style.left = trail[i].x + 'px';
-      trail[i].el.style.top = trail[i].y + 'px';
+    // Trail - only animate if trail is initialized
+    if (trail.length > 0) {
+      for (let i = trail.length - 1; i > 0; i--) {
+        trail[i].x = lerp(trail[i].x, trail[i-1].x, 0.35);
+        trail[i].y = lerp(trail[i].y, trail[i-1].y, 0.35);
+        trail[i].el.style.left = trail[i].x + 'px';
+        trail[i].el.style.top = trail[i].y + 'px';
+      }
+      trail[0].x = lerp(trail[0].x, mouseX, 0.4);
+      trail[0].y = lerp(trail[0].y, mouseY, 0.4);
+      trail[0].el.style.left = trail[0].x + 'px';
+      trail[0].el.style.top = trail[0].y + 'px';
     }
-    trail[0].x = lerp(trail[0].x, mouseX, 0.4);
-    trail[0].y = lerp(trail[0].y, mouseY, 0.4);
-    trail[0].el.style.left = trail[0].x + 'px';
-    trail[0].el.style.top = trail[0].y + 'px';
 
     rafId = requestAnimationFrame(animate);
   }
@@ -2517,34 +2537,55 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 // ===== MAGNETIC TILT on cards =====
-document.querySelectorAll('.service-card, .work-card').forEach(card => {
-  // Add glow div
-  const glow = document.createElement('div');
-  glow.className = 'card-glow';
-  card.appendChild(glow);
+(function initMagneticTilt() {
+  const cards = document.querySelectorAll('.service-card, .work-card');
+  // Skip on touch devices
+  if (window.matchMedia('(hover: none)').matches) return;
 
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-    const rotX = (y - cy) / cy * -6;
-    const rotY = (x - cx) / cx * 6;
-    card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
-    glow.style.left = x + 'px';
-    glow.style.top = y + 'px';
-  });
+  cards.forEach(card => {
+    // Add glow div
+    const glow = document.createElement('div');
+    glow.className = 'card-glow';
+    card.appendChild(glow);
 
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-    card.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), border-color 0.45s, box-shadow 0.45s';
-  });
+    let rafId = null;
+    let targetRotX = 0, targetRotY = 0;
+    let glowX = 0, glowY = 0;
 
-  card.addEventListener('mouseenter', () => {
-    card.style.transition = 'transform 0.1s, border-color 0.45s, box-shadow 0.45s';
+    function updateTransform() {
+      rafId = null;
+      card.style.transform = `perspective(800px) rotateX(${targetRotX}deg) rotateY(${targetRotY}deg) translateY(-6px)`;
+      glow.style.left = glowX + 'px';
+      glow.style.top = glowY + 'px';
+    }
+
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      targetRotX = (y - cy) / cy * -6;
+      targetRotY = (x - cx) / cx * 6;
+      glowX = x;
+      glowY = y;
+
+      if (!rafId) {
+        rafId = requestAnimationFrame(updateTransform);
+      }
+    }, { passive: true });
+
+    card.addEventListener('mouseleave', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      card.style.transform = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(.23,1,.32,1), border-color 0.45s, box-shadow 0.45s';
+    });
+
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.1s, border-color 0.45s, box-shadow 0.45s';
+    });
   });
-});
+})();
 
 // ===== RIPPLE effect on buttons =====
 document.querySelectorAll('.btn-primary, .btn-ghost, .btn-start, .nav-cta, .mf-btn').forEach(btn => {
@@ -2581,8 +2622,8 @@ if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
   gsap.registerPlugin(ScrollToPlugin);
 }
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(el => {
+// Smooth scroll for anchor links (excluding nav-links and hero buttons which have instant scroll)
+document.querySelectorAll('a[href^="#"]:not(.nav-links a):not(.hero-actions a)').forEach(el => {
   el.addEventListener('click', (e) => {
     const href = el.getAttribute('href');
     const target = document.querySelector(href);
@@ -2606,6 +2647,26 @@ document.querySelectorAll('.hero-actions .btn-primary[href^="#"], .hero-actions 
   btn.addEventListener('click', (e) => {
     e.preventDefault();
     const targetId = btn.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+      // Disable smooth scroll temporarily for instant jump
+      const html = document.documentElement;
+      const originalScrollBehavior = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      targetSection.scrollIntoView({ behavior: 'auto', block: 'start' });
+      // Restore smooth scroll for other interactions
+      requestAnimationFrame(() => {
+        html.style.scrollBehavior = originalScrollBehavior || 'smooth';
+      });
+    }
+  });
+});
+
+// Instant scroll for nav links (no animation)
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
     const targetSection = document.querySelector(targetId);
     if (targetSection) {
       // Disable smooth scroll temporarily for instant jump
